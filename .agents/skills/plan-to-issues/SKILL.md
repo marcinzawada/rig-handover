@@ -15,7 +15,11 @@ in a shell this agent can run.
    One issue per unit of work.
 3. **Stop and show the table to the human.** Publish nothing until they approve it.
 4. Ask the human what every issue here must carry (fields, labels, wording), unless it is
-   already written down in this session or in the repo.
+   already written down in this session or in the repo. Written down (approved by the human,
+   plan morning-digest): every issue opens with `Source: plan.md § <n>`, carries the label
+   `plan:<plan name>`, and has the sections Scope, Done when, Blocked by, Model and the closing
+   comment shape from AGENTS.md. A preview or review issue closes when the review is in, not
+   when the link goes out.
 5. Create each issue in dependency order, so blocked-by can cite real numbers:
 
    ```sh
