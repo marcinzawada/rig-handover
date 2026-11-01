@@ -9,6 +9,7 @@ describe('readNight', () => {
     const n = readNight('runs', '2026-10-28');
     expect(n).not.toBeNull();
     expect(n!.badLines).toBe(1);
+    expect(n!.counts).toEqual({ ok: 10, retry: 4, fail: 1 });
     expect(n!.rows.map((r) => r.job)).toEqual([
       'digest/render',
       'fixtures/refresh',
@@ -37,7 +38,7 @@ describe('readNight', () => {
     const dir = mkdtempSync(join(tmpdir(), 'rig-runs-'));
     writeFileSync(join(dir, '2026-10-30.jsonl'), '');
     expect(readNight(dir, '2026-10-31')).toBeNull();
-    expect(readNight(dir, '2026-10-30')).toEqual({ night: '2026-10-30', rows: [], badLines: 0 });
+    expect(readNight(dir, '2026-10-30')).toEqual({ night: '2026-10-30', rows: [], counts: { ok: 0, retry: 0, fail: 0 }, badLines: 0 });
   });
 
   it('counts lines of the wrong shape as bad, and never throws', () => {

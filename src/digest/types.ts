@@ -25,11 +25,13 @@ export type DigestRow = {
   lastAt: string;
 };
 
-// A night on disk. `rows` are sorted by job. `badLines` counts lines that didn't parse: they are
-// counted, never thrown, so the night still renders.
+// A night on disk. `rows` are sorted by job. `counts` are parsed lines per status (the board shows
+// them beside each night). `badLines` counts lines that didn't parse: they are counted, never
+// thrown, so the night still renders.
 export type Night = {
   night: string;
   rows: DigestRow[];
+  counts: Record<RunStatus, number>;
   badLines: number;
 };
 
